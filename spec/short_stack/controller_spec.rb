@@ -134,11 +134,11 @@ describe ShortStack::Controller do
     before do
       class ::RequestFoo < ShortStack
         add_root(__FILE__, "..",  "fixtures", "foobar")
-        get "/foobar", :_name => :foobar do
+        get "/foobar", :name => :foobar do
           url(:foobar)
         end
 
-        get "/template", :_name => :template do
+        get "/template", :name => :template do
           render :template
         end
 

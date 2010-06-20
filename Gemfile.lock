@@ -1,33 +1,8 @@
 --- 
-dependencies: 
-  wrapt: 
-    group: 
-    - :default
-    version: ">= 0"
-  pancake: 
-    group: 
-    - :default
-    version: ~> 0.3
-  haml: 
-    group: 
-    - :test
-    version: ">= 0"
-  rake: 
-    group: 
-    - :test
-    version: ">= 0"
-  rspec: 
-    group: 
-    - :test
-    version: ">= 0"
-  rack-test: 
-    group: 
-    - :test
-    version: ">= 0"
-  rack-rescue: 
-    group: 
-    - :default
-    version: ">= 0.1.2"
+hash: c2bd72a57ebf25f4cfc4d35cc52a9c3deeb478a7
+sources: 
+- Rubygems: 
+    uri: http://gemcutter.org
 specs: 
 - rake: 
     version: 0.8.7
@@ -65,6 +40,32 @@ specs:
     version: 0.1.2
 - rspec: 
     version: 1.3.0
-hash: 61192b4a9c3afa52e6cd03d3188db2e6d5dd51aa
-sources: []
-
+dependencies: 
+  pancake: 
+    version: ~> 0.3
+    group: 
+    - :default
+  rack-rescue: 
+    version: ">= 0.1.2"
+    group: 
+    - :default
+  wrapt: 
+    version: ">= 0"
+    group: 
+    - :default
+  rake: 
+    version: ">= 0"
+    group: 
+    - :test
+  rspec: 
+    version: ">= 0"
+    group: 
+    - :test
+  rack-test: 
+    version: ">= 0"
+    group: 
+    - :test
+  haml: 
+    version: ">= 0"
+    group: 
+    - :test

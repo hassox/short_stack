@@ -1,11 +1,14 @@
 class ShortStack < Pancake::Stack
   inheritable_inner_classes :Controller
+
   class Controller
     extend  Pancake::Mixins::Publish
     include Pancake::Mixins::Render
     include Pancake::Mixins::RequestHelper
     include Pancake::Mixins::ResponseHelper
     include Pancake::Mixins::StackHelper
+
+    inheritable_inner_classes :ViewContext
 
     class self::ViewContext
       include Pancake::Mixins::RequestHelper
@@ -37,9 +40,7 @@ class ShortStack < Pancake::Stack
     push_paths(:views, ["app/views", "views"], "**/*")
 
     DEFAULT_EXCEPTION_HANDLER = lambda do |error|
-      use_layout = env[Router::LAYOUT_KEY]
-      if use_layout
-        layout = env['layout']
+      if layout = env['layout']
         layout.content = render :error, :error => error
         layout
       else
@@ -94,15 +95,12 @@ class ShortStack < Pancake::Stack
 
       negotiate_content_type!(@action_opts.formats, params)
 
-      # Setup the layout
-      use_layout = env[Router::LAYOUT_KEY]
-      layout = env['layout']
-
       # Set the layout defaults before the action is rendered
-      if use_layout && stack_class.default_layout
+      if layout && stack_class.default_layout
         layout.template_name = stack_class.default_layout
       end
-      layout.format = params['format'] if use_layout
+
+      layout.format = params['format'] if layout
 
       logger.info "Dispatching to #{action.inspect}" if logger
 
@@ -114,7 +112,7 @@ class ShortStack < Pancake::Stack
       when Rack::Response
         result.finish
       when String
-        out = if use_layout
+        out = if layout
           layout.content = result
           layout
         else
@@ -173,7 +171,10 @@ class ShortStack < Pancake::Stack
 
     def self._template_name_for(name, opts)
       opts[:format] ||= :html
-      "#{name}.#{opts[:format]}"
+      [
+        "#{name}.#{opts[:format]}",
+        "#{name}"
+      ]
     end
 
     def _tempate_name_for(name, opts = {})

@@ -1,12 +1,18 @@
 require 'pancake'
 require 'short_stack/middleware'
+require 'short_stack/controller'
 
 class ShortStack < Pancake::Stack
-  autoload :Controller, 'short_stack/controller'
-
   add_root(__FILE__, "short_stack/default")
 
   push_paths(:models,"models", "**/*.rb")
+
+  # Make sure that the stack has been initialized
+  # Before we inherit any children.
+  # Otherwise they might not be loaded yet
+  before_inner_class_inheritance do |parent|
+    parent.initialize_stack
+  end
 
   def self.new_endpoint_instance
     self::Controller
@@ -171,7 +177,7 @@ class ShortStack < Pancake::Stack
   # @api private
   # @author Daniel Neighman
   def self.attach_route(method, path, action_name, options)
-    name = options.delete(:_name)
+    name = options.delete(:name)
     r = router.add(path, options)
     r.send(method) unless method == :any
     r.name(name) if name

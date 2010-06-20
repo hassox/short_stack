@@ -7,15 +7,15 @@ describe ShortStack, "routes" do
       include_pancake_stack!
       roots << Pancake.get_root(__FILE__)
 
-      get "/", :_name => :root do
+      get "/", :name => :root do
         "get - /"
       end
 
-      get "/foo", :_name => :foo do
+      get "/foo", :name => :foo do
         "get - foo"
       end
 
-      get "/bar", :_name => :bar do
+      get "/bar", :name => :bar do
         "get - bar"
       end
 

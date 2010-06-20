@@ -1,6 +1,7 @@
 require 'rubygems'
+require 'short_stack'
+require 'haml'
 
-require 'pancake'
 require ::File.join(::File.expand_path(::File.dirname(__FILE__)), "<%= stack_name %>")
 
 # get the application to run.  The application in the Pancake.start block

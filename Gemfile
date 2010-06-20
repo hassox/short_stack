@@ -1,4 +1,4 @@
-#source :rubygems
+source :rubygems
 
 gem 'pancake',      '~>0.3'
 gem 'rack-rescue',  '>=0.1.2'

@@ -58,14 +58,21 @@ describe ShortStack do
 
   describe "inheritance" do
     before do
+      class ::AnotherFoo < ShortFoo; end
       class ::OtherFoo < ShortFoo; end
-      ShortFoo.router.mount(OtherFoo, "/other")
+      AnotherFoo.include_pancake_stack!
+      AnotherFoo.router.mount(OtherFoo, "/other")
+    end
+
+    def app
+      AnotherFoo.stackup
     end
 
     it "should render the same template in the child as it does in the parent" do
       get "/"
-      $captures.pop.should == ShortFoo::Controller
+      $captures.pop.should == AnotherFoo::Controller
       last_response.should match(/inherited from base/)
+      $captures.clear
       result = get "/other/"
       $captures.pop.should == OtherFoo::Controller
       last_response.should match(/inherited from base/)

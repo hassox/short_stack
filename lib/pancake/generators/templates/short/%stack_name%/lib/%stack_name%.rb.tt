@@ -1,4 +1,6 @@
-require 'pancake'
+require 'short_stack'
+require 'haml'
+
 class <%= ActiveSupport::Inflector.camelize(stack_name) %> < ShortStack
   add_root(__FILE__, "<%= stack_name %>")
 
