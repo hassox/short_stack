@@ -16,6 +16,7 @@ module Pancake
         directory "micro/%stack_name%", stack_name
         template  File.join(self.class.source_root, "common/dotgitignore"), "#{stack_name}/.gitignore"
         template  File.join(self.class.source_root, "common/dothtaccess"),  "#{stack_name}/public/.htaccess"
+        template  File.join(self.class.source_root, "common/Gemfile"), "#{stack_name}/Gemfile"
       end
     end
   end

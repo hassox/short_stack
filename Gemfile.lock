@@ -1,14 +1,33 @@
 --- 
-hash: c5b9836e3457108aa06d0654d950c6e860b5ef0f
-sources: 
-- Path: 
-    path: !ruby/object:Pathname 
-      path: /Users/dneighman/Projects/http_router
-- Path: 
-    path: !ruby/object:Pathname 
-      path: /Users/dneighman/Projects/pancake
-- Rubygems: 
-    uri: http://gemcutter.org
+dependencies: 
+  wrapt: 
+    group: 
+    - :default
+    version: ">= 0"
+  pancake: 
+    group: 
+    - :default
+    version: ~> 0.3
+  haml: 
+    group: 
+    - :test
+    version: ">= 0"
+  rake: 
+    group: 
+    - :test
+    version: ">= 0"
+  rspec: 
+    group: 
+    - :test
+    version: ">= 0"
+  rack-test: 
+    group: 
+    - :test
+    version: ">= 0"
+  rack-rescue: 
+    group: 
+    - :default
+    version: ">= 0.1.2"
 specs: 
 - rake: 
     version: 0.8.7
@@ -18,10 +37,6 @@ specs:
     version: 1.0.1
 - any_view: 
     version: 0.2.3
-- callsite: 
-    version: 0.0.2
-- dirge: 
-    version: 0.0.5
 - extlib: 
     version: 0.9.15
 - haml: 
@@ -33,8 +48,7 @@ specs:
 - url_mount: 
     version: 0.2.1
 - http_router: 
-    version: 0.2.4
-    source: 0
+    version: 0.2.5
 - json: 
     version: 1.4.3
 - rack-accept-media-types: 
@@ -46,42 +60,11 @@ specs:
 - wrapt: 
     version: 0.1.7
 - pancake: 
-    version: 0.2.2
-    source: 1
+    version: 0.3.0
 - rack-rescue: 
-    version: 0.1.1
+    version: 0.1.2
 - rspec: 
     version: 1.3.0
-dependencies: 
-  pancake: 
-    version: ">= 0.2"
-    group: 
-    - :default
-  http_router: 
-    version: ">= 0"
-    group: 
-    - :default
-  rack-rescue: 
-    version: ">= 0"
-    group: 
-    - :default
-  wrapt: 
-    version: ">= 0"
-    group: 
-    - :default
-  rake: 
-    version: ">= 0"
-    group: 
-    - :test
-  rspec: 
-    version: ">= 0"
-    group: 
-    - :test
-  rack-test: 
-    version: ">= 0"
-    group: 
-    - :test
-  haml: 
-    version: ">= 0"
-    group: 
-    - :test
+hash: 61192b4a9c3afa52e6cd03d3188db2e6d5dd51aa
+sources: []
+
