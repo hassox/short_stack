@@ -1,5 +1,11 @@
 require 'rubygems'
 require 'rake'
+require 'pancake'
+<% klass_name = ActiveSupport::Inflector.camelize(stack_name) %>
+require File.join(Pancake.get_root(__FILE__), "<%= stack_name %>")
+Pancake.root = Pancake.get_root(__FILE__)
+THIS_STACK = <%= klass_name %>
+<%= klass_name %>.load_rake_tasks!(:master => true)
 
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
@@ -13,14 +19,22 @@ Spec::Rake::SpecTask.new(:rcov) do |spec|
   spec.rcov = true
 end
 
+
 task :default => :spec
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  if File.exist?('VERSION.yml')
+    config = YAML.load(File.read('VERSION.yml'))
+    version = "#{config[:major]}.#{config[:minor]}.#{config[:patch]}"
+  else
+    version = ""
+  end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "short_stack #{version}"
+  rdoc.title = "foo #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+

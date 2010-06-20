@@ -1,0 +1,6 @@
+class <%= ActiveSupport::Inflector.camelize(stack_name) %>
+  get "/" do
+    render :root
+  end
+end
+

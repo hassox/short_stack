@@ -1,0 +1,8 @@
+class <%= ActiveSupport::Inflector.camelize(stack_name) %> < ShortStack
+  add_root(__FILE__)
+
+  get "/" do
+    render :root
+  end
+end
+
